@@ -1,0 +1,261 @@
+import React, { useEffect, useState, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { fundApi } from '../services/api';
+import { Fund } from '../types';
+import FundCard from '../components/FundCard';
+import { motion, useInView } from 'framer-motion';
+import { ArrowRight, Heart, Shield, TrendingUp, Users, ChevronRight } from 'lucide-react';
+
+const Home = () => {
+  const navigate = useNavigate();
+  const [campaigns, setCampaigns] = useState<Fund[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const statsRef = useRef(null);
+  const statsInView = useInView(statsRef, { once: true });
+
+  useEffect(() => {
+    fundApi.list({ status: 'Active', limit: 6 })
+      .then(res => setCampaigns(res.data.funds || []))
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
+
+  const handleDonate = (id: string) => navigate(`/funds/${id}`);
+  const handleShare = (fund: Fund) => {
+    const url = `${window.location.origin}/funds/${fund._id}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(`Support: ${fund.title} ${url}`)}`, '_blank');
+  };
+
+  const stats = [
+    { value: '₹24L+', label: 'Funds Raised', icon: TrendingUp },
+    { value: '1,200+', label: 'Donors', icon: Users },
+    { value: '100%', label: 'Transparent', icon: Shield },
+  ];
+
+  return (
+    <div className="bg-ivory">
+
+      {/* ═══════════ HERO SECTION ═══════════ */}
+      <section className="relative overflow-hidden">
+        {/* Organic background blobs */}
+        <div className="absolute top-20 -right-32 w-[500px] h-[500px] bg-coral/6 blob-1 blur-[80px] pointer-events-none" />
+        <div className="absolute -bottom-20 -left-32 w-[400px] h-[400px] bg-sage/8 blob-2 blur-[60px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 pt-16 sm:pt-24 pb-20 sm:pb-28">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+
+            {/* Left — Editorial Text */}
+            <motion.div
+              className="lg:col-span-7 space-y-7"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: 'easeOut' as const }}
+            >
+              <div className="inline-flex items-center gap-2 bg-coral/8 text-coral text-[12px] font-semibold px-4 py-2 rounded-full border border-coral/15">
+                <Heart className="w-3.5 h-3.5" fill="currentColor" />
+                Trusted by thousands across India
+              </div>
+
+              <h1 className="text-[44px] sm:text-[56px] lg:text-[64px] font-serif text-charcoal leading-[1.05] tracking-tight">
+                Every Rupee
+                <br />
+                Builds <span className="wavy-underline">Hope</span>
+              </h1>
+
+              <p className="text-stone text-[17px] leading-relaxed max-w-lg">
+                India's most transparent crowdfunding platform. Every campaign creator is 
+                Aadhaar-verified, every donation is publicly tracked, and there's absolutely 
+                <span className="font-semibold text-charcoal"> zero platform fee</span>.
+              </p>
+
+              <div className="flex flex-wrap gap-3 pt-2">
+                <Link
+                  to="/explore"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-coral text-white text-[14px] font-bold rounded-xl shadow-warm hover:bg-terracotta hover:shadow-warm-md transition-all active:scale-[0.98]"
+                >
+                  Explore Campaigns
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  to="/create"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-charcoal text-[14px] font-semibold rounded-xl border border-sand hover:border-coral/30 shadow-warm-sm hover:shadow-warm transition-all"
+                >
+                  Start a Fundraiser
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Right — Stats Cards */}
+            <motion.div
+              ref={statsRef}
+              className="lg:col-span-5"
+              initial={{ opacity: 0, y: 30 }}
+              animate={statsInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' as const }}
+            >
+              <div className="bg-white rounded-3xl shadow-warm-md border border-sand/40 p-8">
+                <p className="text-[11px] font-bold text-stone uppercase tracking-[0.15em] mb-6">Platform Impact</p>
+                <div className="space-y-6">
+                  {stats.map((stat, i) => (
+                    <div key={stat.label} className="flex items-center gap-4">
+                      <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                        i === 0 ? 'bg-coral/10 text-coral' :
+                        i === 1 ? 'bg-sage/15 text-sage-dark' :
+                        'bg-navy/8 text-navy'
+                      }`}>
+                        <stat.icon className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <p className="text-[28px] font-serif text-charcoal leading-none">{stat.value}</p>
+                        <p className="text-[12px] text-stone mt-0.5">{stat.label}</p>
+                      </div>
+                      {i < stats.length - 1 && <div className="flex-1" />}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════ FEATURED CAMPAIGNS ═══════════ */}
+      <section className="bg-cream/50 border-y border-sand/40 py-20 sm:py-24">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8">
+          <div className="flex items-end justify-between mb-10">
+            <div>
+              <p className="text-[11px] font-bold text-coral uppercase tracking-[0.15em] mb-2">Active Campaigns</p>
+              <h2 className="text-[36px] sm:text-[42px] font-serif text-charcoal leading-tight">
+                Stories That Need You
+              </h2>
+            </div>
+            <Link
+              to="/explore"
+              className="hidden sm:inline-flex items-center gap-1.5 text-[13px] font-semibold text-coral hover:text-terracotta transition group"
+            >
+              View All
+              <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+          </div>
+
+          {loading ? (
+            <div className="flex flex-col items-center py-20 space-y-3">
+              <div className="w-8 h-8 border-3 border-coral border-t-transparent rounded-full animate-spin" />
+              <p className="text-sm text-stone">Loading campaigns...</p>
+            </div>
+          ) : campaigns.length === 0 ? (
+            <div className="bg-white rounded-3xl border border-sand/40 p-16 text-center shadow-warm">
+              <Heart className="w-12 h-12 text-sand mx-auto mb-4" />
+              <h3 className="font-serif text-xl text-charcoal mb-2">No Active Campaigns Yet</h3>
+              <p className="text-stone text-sm mb-6">Be the first to start a campaign and make an impact.</p>
+              <Link to="/create" className="inline-flex items-center gap-2 px-6 py-3 bg-coral text-white rounded-xl font-bold shadow-warm hover:bg-terracotta transition">
+                Start a Campaign <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+              {campaigns.slice(0, 6).map((fund, i) => (
+                <motion.div
+                  key={fund._id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08, duration: 0.4, ease: 'easeOut' as const }}
+                >
+                  <FundCard fund={fund} onDonate={handleDonate} onShare={handleShare} />
+                </motion.div>
+              ))}
+            </div>
+          )}
+
+          <div className="sm:hidden mt-8 text-center">
+            <Link to="/explore" className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-coral">
+              View All Campaigns <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════ HOW IT WORKS ═══════════ */}
+      <section className="py-20 sm:py-24">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8">
+          <div className="text-center mb-14">
+            <p className="text-[11px] font-bold text-sage-dark uppercase tracking-[0.15em] mb-2">Simple & Transparent</p>
+            <h2 className="text-[36px] sm:text-[42px] font-serif text-charcoal">How CrowdFund Works</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { step: '01', title: 'Verify Your Identity', desc: 'Complete a quick Aadhaar verification to build trust with your donors. It takes under 2 minutes.', color: 'coral' },
+              { step: '02', title: 'Launch Your Campaign', desc: 'Tell your story, set a goal, and submit for review. Our team approves genuine campaigns within 24 hours.', color: 'sage' },
+              { step: '03', title: 'Receive Donations', desc: 'Share your campaign and watch the support pour in. Every donation is tracked and donors get instant receipts.', color: 'navy' },
+            ].map((item, i) => (
+              <motion.div
+                key={item.step}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.4 }}
+                className="bg-white rounded-3xl p-8 shadow-warm border border-sand/40 relative overflow-hidden group hover:shadow-warm-md transition-shadow"
+              >
+                <span className={`text-[60px] font-serif leading-none ${
+                  item.color === 'coral' ? 'text-coral/10' :
+                  item.color === 'sage' ? 'text-sage/15' :
+                  'text-navy/10'
+                } absolute top-4 right-6 group-hover:scale-110 transition-transform`} >
+                  {item.step}
+                </span>
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-5 ${
+                  item.color === 'coral' ? 'bg-coral/10 text-coral' :
+                  item.color === 'sage' ? 'bg-sage/15 text-sage-dark' :
+                  'bg-navy/8 text-navy'
+                }`}>
+                  <span className="text-[14px] font-bold">{item.step}</span>
+                </div>
+                <h3 className="font-serif text-xl text-charcoal mb-2">{item.title}</h3>
+                <p className="text-stone text-[14px] leading-relaxed">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════ CTA BANNER ═══════════ */}
+      <section className="py-20 sm:py-24 bg-gradient-to-b from-ivory to-cream">
+        <div className="max-w-3xl mx-auto px-6 sm:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-[36px] sm:text-[44px] font-serif text-charcoal leading-tight mb-5">
+              Ready to Make a Difference?
+            </h2>
+            <p className="text-stone text-[16px] leading-relaxed mb-8 max-w-xl mx-auto">
+              Whether you want to support a cause or start your own campaign, CrowdFund makes it 
+              simple, transparent, and completely free.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Link
+                to="/explore"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-coral text-white text-[15px] font-bold rounded-xl shadow-warm-md hover:bg-terracotta transition-all active:scale-[0.98]"
+              >
+                Start Donating <Heart className="w-4 h-4" fill="currentColor" />
+              </Link>
+              <Link
+                to="/create"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-charcoal text-[15px] font-semibold rounded-xl border border-sand shadow-warm hover:shadow-warm-md transition-all"
+              >
+                Create a Campaign <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Home;

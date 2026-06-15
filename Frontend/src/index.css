@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base Resets ─────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background-color: #FAF8F5;
+    color: #1A1A1A;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background-color: #E86B4A;
+    color: white;
+  }
+}
+
+/* ── Grain Texture Overlay ──────────── */
+.grain-overlay::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  animation: grain 0.5s steps(1) infinite;
+  opacity: 0.4;
+}
+
+/* ── Custom Scrollbar ───────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF8F5;
+}
+::-webkit-scrollbar-thumb {
+  background: #E8DDD3;
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D4A853;
+}
+
+/* ── Smooth Link Underline ──────────── */
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #E86B4A;
+  border-radius: 1px;
+  transition: width 0.3s ease;
+}
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* ── Wavy Underline for Hero Text ───── */
+.wavy-underline {
+  text-decoration: underline;
+  text-decoration-color: #E86B4A;
+  text-decoration-style: wavy;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+/* ── Card Hover Effect ──────────────── */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 50px rgba(26,26,26,0.10), 0 4px 12px rgba(26,26,26,0.05);
+}
+
+/* ── Progress Bar Animation ─────────── */
+.progress-animate {
+  animation: progressFill 1.2s ease-out forwards;
+}
+@keyframes progressFill {
+  from { width: 0%; }
+}
+
+/* ── Organic Blob Shapes ────────────── */
+.blob-1 {
+  border-radius: 42% 56% 72% 28% / 42% 42% 56% 48%;
+}
+.blob-2 {
+  border-radius: 72% 28% 42% 56% / 56% 48% 42% 42%;
+}
+
+/* ── Input Focus Style ──────────────── */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #E86B4A !important;
+  box-shadow: 0 0 0 3px rgba(232, 107, 74, 0.1);
+}
+
+/* ── Cinematic Glow Border ─────────── */
+.cinematic-glow {
+  position: relative;
+  transition: all 0.3s ease;
+}
+.cinematic-glow::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, #E86B4A, #D4A853, #7B9E7B);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.cinematic-glow:hover::after {
+  opacity: 0.25;
+}
+

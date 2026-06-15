@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const User = require('./src/models/User');
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/crowdfund';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://ritikasoni222006_db_user:ritika222@contactapp.ozcjh94.mongodb.net/?appName=contactapp';
 
 const ADMIN_NAME = 'Admin';
 const ADMIN_EMAIL = 'admin@crowdfund.com';

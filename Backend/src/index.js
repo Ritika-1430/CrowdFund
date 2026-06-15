@@ -33,8 +33,7 @@ const startServer = async () => {
   // Log environment for debugging
   console.log('Using MONGODB_URI:', process.env.MONGODB_URI || 'mongodb+srv://ritikasoni222006_db_user:ritika222@contactapp.ozcjh94.mongodb.net/?appName=contactapp');
 
-  // Prefer binding to loopback to ensure local access; fallback to 0.0.0.0
-  const host = process.env.BIND_HOST || '127.0.0.1';
+  const host = process.env.BIND_HOST || '0.0.0.0';
   const server = app.listen(port, host, () => {
     const addr = server.address();
     console.log(`✓ Server listening on ${addr.address}:${addr.port}`);

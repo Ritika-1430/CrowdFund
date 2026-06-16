@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const port = process.env.PORT || 4000;
 
 // Use MongoDB Atlas or local MongoDB
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://ritikasoni222006_db_user:ritika222@contactapp.ozcjh94.mongodb.net/?appName=contactapp';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://ritikasoni222006_db_user:ritika222006@contactapp.ozcjh94.mongodb.net/?appName=contactapp';
 
 const mongooseOptions = {
   serverSelectionTimeoutMS: 3000,  // Fail fast if MongoDB not available
@@ -31,7 +31,7 @@ const startServer = async () => {
   const dbConnected = await connectDB();
 
   // Log environment for debugging
-  console.log('Using MONGODB_URI:', process.env.MONGODB_URI || 'mongodb+srv://ritikasoni222006_db_user:ritika222@contactapp.ozcjh94.mongodb.net/?appName=contactapp');
+  console.log('Using MONGODB_URI:', process.env.MONGODB_URI || 'mongodb+srv://ritikasoni222006_db_user:ritika222006@contactapp.ozcjh94.mongodb.net/?appName=contactapp');
 
   const host = process.env.BIND_HOST || '0.0.0.0';
   const server = app.listen(port, host, () => {

@@ -1,5 +1,9 @@
 # 🤝 CrowdFund — Connecting Hearts, Empowering Change
 
+### 🌐 Live Deployments
+* **Frontend**: [https://crowd-fund-ecru.vercel.app/](https://crowd-fund-ecru.vercel.app/)
+* **Backend**: [https://crowdfund-oopg.onrender.com](https://crowdfund-oopg.onrender.com)
+
 [![React](https://img.shields.io/badge/React-19-blue.svg?style=flat-square&logo=react)](https://react.dev/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-Database-green.svg?style=flat-square&logo=mongodb)](https://www.mongodb.com/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.x-38B2AC.svg?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)

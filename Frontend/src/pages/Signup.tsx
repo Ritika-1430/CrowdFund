@@ -49,7 +49,7 @@ const Signup = () => {
 
       // Network error (request made but no response)
       if (err.request && !err.response) {
-        setError('Cannot reach backend. Please ensure the server is running at http://localhost:4000');
+        setError('Cannot reach backend. Please ensure the server is running and accessible.');
       } else if (err.response) {
         // Server responded with error JSON
         const serverMsg = err.response?.data?.error || err.response?.data?.message || JSON.stringify(err.response?.data);

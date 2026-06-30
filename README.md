@@ -1,4 +1,4 @@
-# 🤝 CrowdFund — Connecting Hearts, Empowering Change
+# 🤝 Aidora — Connecting Hearts, Empowering Change
 
 ### 🌐 Live Deployments
 * **Frontend**: [https://crowd-fund-ecru.vercel.app/](https://crowd-fund-ecru.vercel.app/)
@@ -9,15 +9,15 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.x-38B2AC.svg?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 
-Welcome to **CrowdFund**! 🌟 We believe that big changes start with small actions. This project is a full-stack crowdfunding platform designed to bring people together—helping passionate creators, community leaders, and individuals raise the funds they need to make the world a slightly better place. 
+Welcome to **Aidora**! 🌟 We believe that big changes start with small actions. This project is a full-stack crowdfunding platform designed to bring people together—helping passionate creators, community leaders, and individuals raise the funds they need to make the world a slightly better place. 
 
-Unlike generic platforms, CrowdFund focuses on **transparency and trust**. We introduce identity checks and tangible donation packages so that every supporter knows *exactly* where their hard-earned money is going.
+Unlike generic platforms, Aidora focuses on **transparency and trust**. We introduce identity checks and tangible donation packages so that every supporter knows *exactly* where their hard-earned money is going.
 
 ---
 
 ## 📖 The Story & Features
 
-Here is what makes CrowdFund special:
+Here is what makes Aidora special:
 
 * **🛡️ Built on Trust (Aadhaar Verification)**: To keep our community safe, every campaign creator must verify their identity using a mock Aadhaar integration before launching a fund. No anonymous spam, just real people.
 * **🎁 Real Impact (Donation Kits)**: Ever wondered what a $20 donation actually does? With our **Donation Kits**, donors can purchase real-world items (like a "School Kit" or "First Aid Kit") directly for a project. 
@@ -48,7 +48,7 @@ If you're exploring the codebase, here is where you'll find everything:
 
 ## 🚀 Setting Up Your Copy
 
-Want to run CrowdFund locally? We've made it as simple as possible.
+Want to run Aidora locally? We've made it as simple as possible.
 
 ### Prerequisites
 Make sure you have [Node.js](https://nodejs.org/) and [MongoDB](https://www.mongodb.com/) set up on your machine.
@@ -71,7 +71,7 @@ mongod
 3. Set up a `.env` file (you can copy `.env.example`):
    ```env
    PORT=4000
-   MONGODB_URI=mongodb://localhost:27017/crowdfund
+   MONGODB_URI=mongodb://localhost:27017/aidora
    JWT_SECRET=choose_a_secure_secret_key
    ```
 4. Start the development server:

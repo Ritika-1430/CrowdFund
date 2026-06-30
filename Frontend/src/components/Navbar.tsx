@@ -36,7 +36,7 @@ const Navbar = () => {
             </div>
             <div className="leading-none">
               <span className="block text-[19px] font-serif text-charcoal tracking-tight">
-                Crowd<span className="text-coral">Fund</span>
+                Aid<span className="text-coral">ora</span>
               </span>
             </div>
           </Link>

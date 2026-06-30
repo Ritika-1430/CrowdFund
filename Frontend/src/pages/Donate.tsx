@@ -383,12 +383,12 @@ TAX EXEMPTION BENEFIT: CLAIMED (SECTION 80G)
 Donor PAN: ${panNumber}
 Eligible Deduction: 50% of Donation amount under 80G.
 This document serves as temporary proof of donation.
-CrowdFund 80G Registration: AAATC8472MDF20234
+Aidora 80G Registration: AAATC8472MDF20234
 ` : '';
 
     const text = `
 ==================================================
-               CROWDFUND DONATION RECEIPT
+               AIDORA DONATION RECEIPT
 ==================================================
 Date: ${new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
 Transaction ID: CF-${Math.floor(10000000 + Math.random() * 90000000)}
@@ -407,7 +407,7 @@ Thank you for your generosity!
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `crowdfund-receipt-${fund._id}.txt`;
+    a.download = `aidora-receipt-${fund._id}.txt`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -415,7 +415,7 @@ Thank you for your generosity!
 
   // Success State
   if (success) {
-    const sharePitch = `I just supported the campaign "${fund.title}" on CrowdFund. Every contribution counts! Join me in making a difference: ${window.location.origin}/funds/${fund._id}`;
+    const sharePitch = `I just supported the campaign "${fund.title}" on Aidora. Every contribution counts! Join me in making a difference: ${window.location.origin}/funds/${fund._id}`;
 
     return (
       <div className="min-h-screen bg-ivory flex items-center justify-center p-6">

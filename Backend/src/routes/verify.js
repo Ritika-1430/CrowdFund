@@ -64,7 +64,7 @@ router.post('/aadhaar/send-otp',
           <div style="border-bottom: 1px solid #e2e8f0; margin: 20px 0;"></div>
           <p style="text-align: left; color: #1e2d3d; font-size: 14px;">Dear ${name},</p>
           <p style="text-align: left; color: #6b6560; font-size: 14px; line-height: 1.5;">
-            You have requested a secure Aadhaar identity verification link for your CrowdFund profile account. Please use the following 6-digit One-Time Password (OTP) to approve and finalize this process:
+            You have requested a secure Aadhaar identity verification link for your Aidora profile account. Please use the following 6-digit One-Time Password (OTP) to approve and finalize this process:
           </p>
           <div style="background-color: #faf0e6; border: 1px solid #d4c3b3; border-radius: 8px; padding: 16px 24px; margin: 24px auto; display: inline-block; font-size: 28px; font-weight: bold; letter-spacing: 0.25em; color: #e86b4a; font-family: monospace;">
             ${otp}
@@ -77,7 +77,7 @@ router.post('/aadhaar/send-otp',
 
       await sendMail({
         to: user.email,
-        subject: 'Aadhaar Verification OTP - CrowdFund',
+        subject: 'Aadhaar Verification OTP - Aidora',
         html: emailHtml
       });
       console.log(`Aadhaar OTP email dispatched successfully to ${user.email}`);

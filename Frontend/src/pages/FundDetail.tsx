@@ -216,7 +216,7 @@ const FundDetail = () => {
     // Draw brand name text
     ctx.fillStyle = '#1A1A1A'; // Charcoal
     ctx.font = 'bold 32px Georgia, serif';
-    ctx.fillText('CrowdFund', 130, 102);
+    ctx.fillText('Aidora', 130, 102);
 
     // Draw Category Tag
     ctx.fillStyle = '#F5F0EB'; // Cream
@@ -325,7 +325,7 @@ const FundDetail = () => {
     const url = canvas.toDataURL('image/png');
     const a = document.createElement('a');
     a.href = url;
-    a.download = `crowdfund-share-${fund?._id}.png`;
+    a.download = `aidora-share-${fund?._id}.png`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

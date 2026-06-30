@@ -49,7 +49,7 @@ const Footer: React.FC = () => {
                 <Heart className="w-[18px] h-[18px] text-white" fill="white" strokeWidth={0} />
               </div>
               <span className="text-xl font-serif text-white">
-                Crowd<span className="text-coral">Fund</span>
+                Aid<span className="text-coral">ora</span>
               </span>
             </div>
             <p className="text-sm text-white/50 leading-relaxed max-w-sm mb-6">
@@ -103,7 +103,7 @@ const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-white/30">
-            © {year} CrowdFund. All rights reserved.
+            © {year} Aidora. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-xs text-white/30">
             <span className="hover:text-white/60 cursor-pointer transition">Privacy</span>

@@ -70,7 +70,7 @@ const AdminDashboard: React.FC = () => {
         <div className="bg-white border-b border-[#e8e2d8] px-6 py-4 sticky top-0 z-10 flex items-center justify-between">
           <div>
             <h1 className="text-xl font-serif text-[#1a1a2e] font-bold">{tabs.find(t => t.id === activeTab)?.label}</h1>
-            <p className="text-[11px] text-[#8b8477] mt-0.5">CrowdFund Administration Console</p>
+            <p className="text-[11px] text-[#8b8477] mt-0.5">Aidora Administration Console</p>
           </div>
           <div className="flex items-center gap-3">
             <span className="text-[11px] text-[#8b8477] bg-[#f4f1ec] px-3 py-1.5 rounded-lg border border-[#e8e2d8]">
@@ -325,7 +325,7 @@ const UsersTab: React.FC = () => {
     setExporting(true);
     try {
       const r = await adminApi.exportUsers();
-      downloadBlob(r.data, `CrowdFund_Users_${Date.now()}.xlsx`);
+      downloadBlob(r.data, `Aidora_Users_${Date.now()}.xlsx`);
     } catch { }
     finally { setExporting(false); }
   };
@@ -538,7 +538,7 @@ const CampaignsTab: React.FC = () => {
     setExporting(true);
     try {
       const r = await adminApi.exportCampaigns();
-      downloadBlob(r.data, `CrowdFund_Campaigns_${Date.now()}.xlsx`);
+      downloadBlob(r.data, `Aidora_Campaigns_${Date.now()}.xlsx`);
     } catch { }
     finally { setExporting(false); }
   };
@@ -741,7 +741,7 @@ const DonationsTab: React.FC = () => {
     setExporting(true);
     try {
       const r = await adminApi.exportDonations();
-      downloadBlob(r.data, `CrowdFund_Donations_${Date.now()}.xlsx`);
+      downloadBlob(r.data, `Aidora_Donations_${Date.now()}.xlsx`);
     } catch { }
     finally { setExporting(false); }
   };

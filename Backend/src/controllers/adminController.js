@@ -330,14 +330,21 @@ const buildExcelBuffer = (data, sheetName) => {
   const wb = XLSX.utils.book_new();
   const ws = XLSX.utils.json_to_sheet(data);
 
-  // Auto-size columns
-  const colWidths = Object.keys(data[0] || {}).map(key => ({
-    wch: Math.max(key.length, ...data.map(row => String(row[key] || '').length)).toString().length + 4
-  }));
-  ws['!cols'] = colWidths;
+  // Auto-size columns based on actual content width
+  if (data.length > 0) {
+    const colWidths = Object.keys(data[0]).map(key => {
+      const maxContentLen = Math.max(
+        key.length,
+        ...data.map(row => String(row[key] != null ? row[key] : '').length)
+      );
+      return { wch: Math.min(maxContentLen + 4, 50) };
+    });
+    ws['!cols'] = colWidths;
+  }
 
   XLSX.utils.book_append_sheet(wb, ws, sheetName);
-  return XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' });
+  const buf = XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' });
+  return Buffer.from(buf);
 };
 
 exports.exportUsers = async (req, res) => {
@@ -357,8 +364,8 @@ exports.exportUsers = async (req, res) => {
 
     const buffer = buildExcelBuffer(data, 'Users');
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    res.setHeader('Content-Disposition', `attachment; filename=CrowdFund_Users_${Date.now()}.xlsx`);
-    res.send(buffer);
+    res.setHeader('Content-Disposition', 'attachment; filename=Aidora_Users.xlsx');
+    res.end(buffer);
   } catch (err) {
     console.error('Export users error:', err);
     res.status(500).json({ error: 'Failed to export users' });
@@ -388,8 +395,8 @@ exports.exportCampaigns = async (req, res) => {
 
     const buffer = buildExcelBuffer(data, 'Campaigns');
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    res.setHeader('Content-Disposition', `attachment; filename=CrowdFund_Campaigns_${Date.now()}.xlsx`);
-    res.send(buffer);
+    res.setHeader('Content-Disposition', 'attachment; filename=Aidora_Campaigns.xlsx');
+    res.end(buffer);
   } catch (err) {
     console.error('Export campaigns error:', err);
     res.status(500).json({ error: 'Failed to export campaigns' });
@@ -424,8 +431,8 @@ exports.exportDonations = async (req, res) => {
 
     const buffer = buildExcelBuffer(data, 'Donations');
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    res.setHeader('Content-Disposition', `attachment; filename=CrowdFund_Donations_${Date.now()}.xlsx`);
-    res.send(buffer);
+    res.setHeader('Content-Disposition', 'attachment; filename=Aidora_Donations.xlsx');
+    res.end(buffer);
   } catch (err) {
     console.error('Export donations error:', err);
     res.status(500).json({ error: 'Failed to export donations' });

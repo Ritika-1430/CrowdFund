@@ -28,7 +28,9 @@ const apiLimiter = rateLimit({
 app.use('/api/', apiLimiter);
 
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+  exposedHeaders: ['Content-Disposition'],
+}));
 app.use(express.json({ limit: '5mb' }));
 app.use(morgan('dev'));
 
@@ -39,7 +41,7 @@ app.use('/api/verify', verifyRoutes);
 app.use('/api/subscriptions', subscriptionRoutes);
 app.use('/api/admin', adminRoutes);
 
-app.get('/', (req, res) => res.json({ ok: true, message: 'Crowdfund API is running' }));
+app.get('/', (req, res) => res.json({ ok: true, message: 'Aidora API is running' }));
 app.get('/api/health', (req, res) => res.json({ ok: true, time: new Date().toISOString() }));
 
 app.use((err, req, res, next) => {

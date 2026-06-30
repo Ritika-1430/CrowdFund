@@ -271,7 +271,7 @@ const Profile: React.FC = () => {
     context.textAlign = 'center';
     context.fillText('APPROVED', cx, cy - 3);
     context.font = 'bold 6px sans-serif';
-    context.fillText('CROWDFUND', cx, cy + 6);
+    context.fillText('AIDORA', cx, cy + 6);
   };
 
   // Draw & Download Appreciation Certificate
@@ -327,7 +327,7 @@ const Profile: React.FC = () => {
     ctx.fillStyle = '#6B6560'; 
     ctx.font = '14px sans-serif';
     ctx.fillText('In sincere recognition and appreciation of their noble contributions', 400, 310);
-    ctx.fillText('towards healthcare, emergency relief, and child care campaigns on CrowdFund.', 400, 335);
+    ctx.fillText('towards healthcare, emergency relief, and child care campaigns on Aidora.', 400, 335);
     ctx.fillText('Their outstanding generosity represents a beacon of hope for many lives.', 400, 360);
 
     // Stats Box Background
@@ -370,7 +370,7 @@ const Profile: React.FC = () => {
     ctx.fillText('Ritik Sen', 650, 525);
     ctx.font = '9px sans-serif';
     ctx.fillStyle = '#6B6560';
-    ctx.fillText('Co-Founder, CrowdFund', 650, 540);
+    ctx.fillText('Co-Founder, Aidora', 650, 540);
     ctx.strokeStyle = '#D4C3B3';
     ctx.beginPath();
     ctx.moveTo(570, 510);
@@ -410,7 +410,7 @@ const Profile: React.FC = () => {
     ctx.fillStyle = '#1E2D3D';
     ctx.font = 'bold 24px Georgia, serif';
     ctx.textAlign = 'center';
-    ctx.fillText('CROWDFUND TAX RECEIPT & INVOICE', 300, 80);
+    ctx.fillText('AIDORA TAX RECEIPT & INVOICE', 300, 80);
 
     // NGO Subtitle
     ctx.fillStyle = '#E86B4A';
@@ -550,7 +550,7 @@ const Profile: React.FC = () => {
     ctx.fillText('Ritik Sen', 420, 705);
     ctx.fillStyle = '#6B6560';
     ctx.font = '9px sans-serif';
-    ctx.fillText('Co-Founder, CrowdFund', 420, 720);
+    ctx.fillText('Co-Founder, Aidora', 420, 720);
     ctx.strokeStyle = '#D4C3B3';
     ctx.beginPath();
     ctx.moveTo(350, 692);
@@ -563,7 +563,7 @@ const Profile: React.FC = () => {
     // Trigger Download
     const url = canvas.toDataURL('image/png');
     const link = document.createElement('a');
-    link.download = `crowdfund-receipt-txn-${donId.slice(-8)}.png`;
+    link.download = `aidora-receipt-txn-${donId.slice(-8)}.png`;
     link.href = url;
     document.body.appendChild(link);
     link.click();

@@ -237,7 +237,7 @@ const Home = () => {
 
   // FEATURE 15: Testimonial live submission
   const [testimonials, setTestimonials] = useState<any[]>([
-    { name: 'Dr. Vivek Sharma', text: 'CrowdFund verification changed how we do rural outreach. Truly 0% platform fee!', rating: 5 },
+    { name: 'Dr. Vivek Sharma', text: 'Aidora verification changed how we do rural outreach. Truly 0% platform fee!', rating: 5 },
     { name: 'Priya Iyer', text: 'Secured funds for my mother\'s heart treatment in 36 hours. Very transparent platform.', rating: 5 },
     { name: 'Aman Deep', text: 'Donated ₹5,000 to disaster relief. I saw exactly where it went and got an instant 80G receipt.', rating: 5 }
   ]);
@@ -421,7 +421,7 @@ const Home = () => {
       .catch((e) => console.warn('Could not fetch leaderboard:', e));
 
     // 5. Load custom testimonials from localStorage (Feature 15)
-    const stored = localStorage.getItem('crowdfund_testimonials');
+    const stored = localStorage.getItem('aidora_testimonials');
     if (stored) {
       try {
         setTestimonials(JSON.parse(stored));
@@ -581,7 +581,7 @@ const Home = () => {
       ...testimonials
     ];
     setTestimonials(added);
-    localStorage.setItem('crowdfund_testimonials', JSON.stringify(added));
+    localStorage.setItem('aidora_testimonials', JSON.stringify(added));
 
     setNewFeedbackName('');
     setNewFeedbackText('');
@@ -855,7 +855,7 @@ const Home = () => {
 
   // FAQ List configuration (Feature 14)
   const FAQs = [
-    { q: 'Is there a platform fee at CrowdFund?', a: 'No, CrowdFund charges absolutely zero platform fee. 100% of your donation is delivered to the beneficiary minus minor payment gateway processing charges.' },
+    { q: 'Is there a platform fee at Aidora?', a: 'No, Aidora charges absolutely zero platform fee. 100% of your donation is delivered to the beneficiary minus minor payment gateway processing charges.' },
     { q: 'How is identity verification verified?', a: 'Every campaign creator completes Aadhaar verification. Aadhaar data is cross-referenced using real-time government databases to certify authenticity.' },
     { q: 'Are donations tax-exempt under 80G?', a: 'Yes! Select the 80G tax benefit option on checkout, enter your PAN card, and an automated tax exemption receipt will be issued instantly.' },
     { q: 'Can I withdraw the accumulated funds early?', a: 'Verified creators can request early emergency payouts directly through their dashboard in case of urgent hospital discharge needs.' },
@@ -1845,7 +1845,7 @@ const Home = () => {
                 </div>
                 {hoveredSegment === 'gateway' && (
                   <p className="text-xs text-stone dark:text-sand mt-2">
-                    Standard gateway fees collected by bank transaction networks. CrowdFund markup is 0%.
+                    Standard gateway fees collected by bank transaction networks. Aidora markup is 0%.
                   </p>
                 )}
               </div>
@@ -2291,7 +2291,7 @@ const Home = () => {
                 Hospital Billing & Case ID Validator
               </h2>
               <p className="text-stone dark:text-sand text-xs leading-relaxed">
-                Trust is our currency. Unlike other platforms, CrowdFund executes direct payouts to hospital billing departments. Verify any active medical fundraiser's case sheet and billing authorization below.
+                Trust is our currency. Unlike other platforms, Aidora executes direct payouts to hospital billing departments. Verify any active medical fundraiser's case sheet and billing authorization below.
               </p>
             </div>
 
@@ -2827,7 +2827,7 @@ const Home = () => {
 
               <div className="space-y-4 font-mono text-xs text-charcoal dark:text-white p-4 bg-cream/40 dark:bg-navy-light/40 rounded-2xl border border-sand/40">
                 <div className="text-center font-bold text-sm border-b border-sand/20 pb-2 mb-2">
-                  CROWDFUND RECEIPT MATCH (ESTIMATED)
+                  AIDORA RECEIPT MATCH (ESTIMATED)
                 </div>
                 <div className="flex justify-between">
                   <span>Receipt No:</span>

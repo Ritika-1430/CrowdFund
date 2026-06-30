@@ -68,7 +68,7 @@ const Auth = () => {
             <div className="w-9 h-9 bg-coral rounded-xl flex items-center justify-center">
               <Heart className="w-[18px] h-[18px] text-white" fill="white" strokeWidth={0} />
             </div>
-            <span className="text-xl font-serif text-white">CrowdFund</span>
+            <span className="text-xl font-serif text-white">Aidora</span>
           </div>
           <h2 className="text-[36px] font-serif text-white leading-tight mb-4">
             Join a community that <span className="text-coral">cares</span>
@@ -101,7 +101,7 @@ const Auth = () => {
               {isLogin ? 'Welcome back' : 'Create your account'}
             </h2>
             <p className="text-stone text-[14px] mb-8">
-              {isLogin ? 'Sign in to manage your campaigns and donations' : 'Join CrowdFund and start making an impact'}
+              {isLogin ? 'Sign in to manage your campaigns and donations' : 'Join Aidora and start making an impact'}
             </p>
 
             {/* Toggle */}
